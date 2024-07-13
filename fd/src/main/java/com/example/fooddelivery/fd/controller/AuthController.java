@@ -97,7 +97,7 @@ public class AuthController {
         authResponse.setMessage("login success");
         authResponse.setRole(USER_ROLE.valueOf(role));
 
-        return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
+        return new ResponseEntity<>(authResponse, HttpStatus.OK);
     }
 
     private Authentication authenticate(String username, String password) {
