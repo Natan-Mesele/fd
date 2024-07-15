@@ -29,10 +29,10 @@ public class IngredientController {
     }
 
     @PostMapping
-    public ResponseEntity<IngredientCategory> createIngredientItem(
+    public ResponseEntity<IngredientsItem> createIngredientItem(
             @RequestBody IngredientRequest req
             ) throws Exception {
-        IngredientCategory item = ingredientsService.createIngredientCategory(req.getName(), req.getRestaurantId());
+        IngredientsItem item = ingredientsService.createIngredientItem(req.getRestaurantId(),req.getName(),req.getCategoryId());
         return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
 

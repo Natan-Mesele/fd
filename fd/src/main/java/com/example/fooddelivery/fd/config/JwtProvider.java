@@ -17,9 +17,9 @@ import java.util.Set;
 @Service
 public class JwtProvider {
 
-    static SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRETE_KEY.getBytes());
+    private SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRETE_KEY.getBytes());
 
-    public static String generateToken(Authentication auth){
+    public String generateToken(Authentication auth){
         Collection<? extends GrantedAuthority>authorities=auth.getAuthorities();
         String roles = populateAuthorities(authorities);
 
@@ -31,7 +31,7 @@ public class JwtProvider {
                 .compact();
     }
 
-    private static String populateAuthorities(Collection<? extends GrantedAuthority> authorities) {
+    private String populateAuthorities(Collection<? extends GrantedAuthority> authorities) {
         Set<String> auths = new HashSet<>();
 
         for(GrantedAuthority authority:authorities){
@@ -40,7 +40,7 @@ public class JwtProvider {
         return String.join(",", auths);
     }
 
-    public static String getEmailFromToken(String jwt){
+    public String getEmailFromToken(String jwt){
         jwt=jwt.substring(7);
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key)

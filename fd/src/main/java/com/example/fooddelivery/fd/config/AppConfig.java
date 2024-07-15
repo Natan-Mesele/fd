@@ -51,22 +51,10 @@ public class AppConfig {
 
                 return cfg;
             }
-            @Bean
-            public CorsFilter corsFilter() {
-                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-                CorsConfiguration config = new CorsConfiguration();
-                config.setAllowCredentials(true);
-                config.addAllowedOriginPattern("*");
-                config.addAllowedHeader("*");
-                config.addAllowedMethod("*");
-                source.registerCorsConfiguration("/**", config);
-                return new CorsFilter(source);
-            }
         };
     }
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
 }

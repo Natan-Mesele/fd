@@ -70,7 +70,7 @@ public class AuthController {
         Authentication authentication=new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String jwt= JwtProvider.generateToken(authentication);
+        String jwt= jwtProvider.generateToken(authentication);
 
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(jwt);
@@ -90,7 +90,7 @@ public class AuthController {
         Collection<? extends GrantedAuthority>authorities=authentication.getAuthorities();
         String role = authorities.isEmpty()?null:authorities.iterator().next().getAuthority();
 
-        String jwt= JwtProvider.generateToken(authentication);
+        String jwt= jwtProvider.generateToken(authentication);
 
         AuthResponse authResponse=new AuthResponse();
         authResponse.setJwt(jwt);
